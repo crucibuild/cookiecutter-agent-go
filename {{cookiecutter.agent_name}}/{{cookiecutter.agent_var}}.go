@@ -23,13 +23,18 @@ import (
 	"github.com/crucibuild/sdk-agent-go/agentimpl"
 )
 
+// Resources represents an handler on the various data files
+// Used by the agent(avro files, manifest, etc...).
 var Resources http.FileSystem
 
+// {{cookiecutter.agent_var}} is an implementation over the Agent implementation
+// available in sdk-agent-go.
 type {{cookiecutter.agent_var}} struct {
 	*agentimpl.Agent
 }
 
-func MustOpenResources(path string) []byte {
+// nolint: unparam
+func mustOpenResources(path string) []byte {
 	file, err := Resources.Open(path)
 
 	if err != nil {
@@ -45,10 +50,11 @@ func MustOpenResources(path string) []byte {
 	return content
 }
 
+// New{{cookiecutter.agent_var}} creates a new instance of {{cookiecutter.agent_var}}.
 func New{{cookiecutter.agent_var}}() (agentiface.Agent, error) {
 	var agentSpec map[string]interface{}
 
-	manifest := MustOpenResources("/resources/manifest.json")
+	manifest := mustOpenResources("/resources/manifest.json")
 
 	err := json.Unmarshal(manifest, &agentSpec)
 
