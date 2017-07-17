@@ -1,7 +1,7 @@
 cookiecutter-agent-go
 =====================
 [![Cookiecutter](https://img.shields.io/badge/generator-cookiecutter-5aadbb.svg?style=flat)](http://yeoman.io)
-[![Build Status](https://travis-ci.org/crucibuild/cookiecutter.svg?branch=develop)](https://travis-ci.org/crucibuild/cookiecutter)
+[![Build Status](https://travis-ci.org/crucibuild/cookiecutter-agent-go.svg?branch=master)](https://travis-ci.org/crucibuild/cookiecutter-agent-go)
 
 > A [cookiecutter] template to create new [Crucibuild] Agents in [Go] following best practices.
 
