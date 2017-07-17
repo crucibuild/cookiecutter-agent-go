@@ -1,5 +1,5 @@
 {
-  "author_name": "Camel Christophe, Christophe Camel, Jonathan Pigrée",
+  "author_name": "Christophe Camel, Jonathan Pigrée",
   "project_organisation": "crucibuild",
   "agent_name": "agent-foo",
   "agent_title": "{{ cookiecutter.agent_name.replace('-',' ').title() }}",
