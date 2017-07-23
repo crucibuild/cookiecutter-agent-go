@@ -1,19 +1,22 @@
-default: check
+default: ci
 
-.PHONY: check ci dependencies
+SCRIPTS_PATH:=$(CURDIR)/../scripts-build-go/script
+
+.PHONY: build check ci dependencies test
 
 dependencies:
-	go get -t -v ./...
-	go get -v "github.com/omeid/go-resources/cmd/resources"
-
-check: dependencies
-	go get -u github.com/alecthomas/gometalinter
-	gometalinter --install --update
-	gometalinter -j2 --config "$(CURDIR)/gometalinter.json" ./...
+	go get -v -d -u "github.com/crucibuild/scripts-build-go"
+	go get -v -d ./...
 
 build: dependencies
-	resources -output="resources.go" -var="Resources" -trim="" resources/* schema/*
-	go build ./...
+	$(SCRIPTS_PATH)/resource.sh "$(CURDIR)/resources.go" resources/* schema/*
+	go build .
 
-ci: build #TODO fix warnings check
+test: build
+	go test .
+
+check: dependencies
+	$(SCRIPTS_PATH)/check.sh
+
+ci: test check
 	true
